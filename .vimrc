@@ -16,7 +16,7 @@ hi PmenuSel ctermbg=white ctermfg=blue
 
 """
 autocmd VimEnter * NERDTree
-filetype indent off
+filetype indent on
 
 let mapleader = " "
 
@@ -66,6 +66,8 @@ set nocindent
 set nosmartindent
 set indentexpr=
 set guifont=Hack_Nerd_Font_Mono
+set foldmethod=indent
+set foldlevel=99
 "set background=dark
 set backspace=indent,eol,start
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,precedes:«,extends:»
@@ -222,3 +224,13 @@ if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
   endif
 endfunction
 
+"Python Settings
+autocmd FileType python set softtabstop=4
+autocmd FileType python set tabstop=4
+autocmd FileType python set autoindent
+autocmd FileType python set expandtab
+autocmd FileType python set textwidth=80
+autocmd FileType python set smartindent
+autocmd FileType python set shiftwidth=4
+autocmd FileType python map <buffer> <F2> :w<CR>:exec '! python' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F2> <esc>:w<CR>:exec '! python' shellescape(@%, 1)<CR>

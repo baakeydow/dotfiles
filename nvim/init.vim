@@ -1,6 +1,9 @@
 " Keep Plug commands between plug#begin() and plug#end().
 call plug#begin('~/.vim/plugged')
 
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+Plug 'Vimjas/vim-python-pep8-indent'
+
 Plug 'Yggdroot/indentLine'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'preservim/nerdcommenter'
