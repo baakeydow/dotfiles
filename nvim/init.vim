@@ -4,6 +4,11 @@ call plug#begin('~/.vim/plugged')
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'Vimjas/vim-python-pep8-indent'
 
+Plug 'dense-analysis/ale'
+
+Plug 'sheerun/vim-polyglot'
+
+Plug 'jiangmiao/auto-pairs'
 Plug 'Yggdroot/indentLine'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'preservim/nerdcommenter'

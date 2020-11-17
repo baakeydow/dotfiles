@@ -16,6 +16,7 @@ hi PmenuSel ctermbg=white ctermfg=blue
 
 """
 autocmd VimEnter * NERDTree
+autocmd BufEnter * :ALEHover
 filetype indent on
 
 let mapleader = " "
@@ -32,6 +33,8 @@ if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
 endif
 
+let g:ale_hover_to_preview = 1
+let g:ale_disable_lsp = 1
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:tmuxline_preset = 'full'
 let g:airline_theme = "badwolf"
@@ -54,6 +57,7 @@ set cursorline
 set cursorcolumn
 hi CursorLine cterm=NONE ctermbg=NONE ctermfg=lightgreen guibg=NONE guifg=lightgreen
 hi MatchParen guifg=magenta guibg=white
+hi ALEWarning ctermbg=DarkMagenta
 
 if (has("termguicolors"))
  set termguicolors
@@ -149,6 +153,7 @@ noremap <leader>7 7gt
 noremap <leader>8 8gt
 noremap <leader>9 9gt
 
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 " Toggle NERDTree
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 nmap <c-g> :NERDTreeToggle<CR>
@@ -221,6 +226,14 @@ function! SyncTree()
 if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
     NERDTreeFind
     wincmd p
+  endif
+endfunction
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
   endif
 endfunction
 
